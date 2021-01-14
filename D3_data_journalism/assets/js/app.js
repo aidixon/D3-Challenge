@@ -21,4 +21,13 @@ var svg = d3.select(".scatter")
 // transform margins so the axis are the correct spot
 var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
-    
+
+// Import data for analysis
+d3.csv("data/data.csv").then(function(povertydata) {
+
+    // First parse the data into numbers
+    povertydata.forEach(function(data) {
+        data.healthcare = +data.healthcare;
+        data.poverty = +data.poverty;
+    })
+});
