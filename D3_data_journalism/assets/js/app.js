@@ -30,4 +30,15 @@ d3.csv("data/data.csv").then(function(povertydata) {
         data.healthcare = +data.healthcare;
         data.poverty = +data.poverty;
     })
+
+    // Scale functions
+    var xLinearScale = d3.scaleLinear()
+        .domain([30, d3.max(povertydata, d => d.healthcare)])
+        .range([height, 0]);
+
+    // Axis functions
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
+
+    
 });
