@@ -1,6 +1,6 @@
 // Set the variables for height and width
-var svgWidth = 1200;
-var svgHeight = 500;
+var svgWidth = 2000;
+var svgHeight = 700;
 
 var margin = {
     top: 20,
@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
 
     // Scale functions
     var xLinearScale = d3.scaleLinear()
-        .domain([10, d3.max(povertydata, d => d.healthcare)])
+        .domain([d3.max(povertydata, d => d.healthcare), 0])
         .range([height, 0]);
     
     var yLinearScale = d3.scaleLinear()
@@ -68,7 +68,7 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
         .attr("class", "toolTip")
         .offset([80, -60])
         .html(function(d) {
-            return (`${d.state}<br> Poverty: ${d.poverty}% <br> Healthcare: ${d.healthcare}`);
+            return (`<strong>${d.state}<br> Poverty: ${d.poverty}% <br> Healthcare: ${d.healthcare}%</strong>`);
         });
 
     // Add tooltips to the chart
