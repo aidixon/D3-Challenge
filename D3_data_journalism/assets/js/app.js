@@ -1,12 +1,12 @@
 // Set the variables for height and width
-var svgWidth = 900;
-var svgHeight = 600;
+var svgWidth = 1200;
+var svgHeight = 500;
 
 var margin = {
-    top: 25,
-    right: 45,
+    top: 20,
+    right: 40,
     bottom: 60,
-    left: 150
+    left: 100
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
 
     // Scale functions
     var xLinearScale = d3.scaleLinear()
-        .domain([30, d3.max(povertydata, d => d.healthcare)])
+        .domain([10, d3.max(povertydata, d => d.healthcare)])
         .range([height, 0]);
     
     var yLinearScale = d3.scaleLinear()
@@ -84,4 +84,21 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
         .on("mouseout", function(data, index) {
             toolTip.hide(data);
         })
+
+    // Labels for the axes
+    chartGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 40)
+        // Centers x axis label
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .attr("class", "axisText")
+        .text("In Poverty (%)");
+
+    chartGroup.append("text")
+        .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+        .attr("class", "axisText")
+        .text("Lacks Healthcare (%)");
+}).catch(function(error) {
+    console.log(error)
 });
