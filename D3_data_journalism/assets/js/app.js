@@ -23,7 +23,7 @@ var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import data for analysis
-d3.csv("data/data.csv").then(function(povertydata) {
+d3.csv("../data/data.csv").then(function(povertydata) {
 
     // First parse the data into numbers
     povertydata.forEach(function(data) {
@@ -47,4 +47,15 @@ d3.csv("data/data.csv").then(function(povertydata) {
 
     chartGroup.append("g")
     .call(leftAxis);
+
+    // Create circle for chart
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(povertydata)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy",  d => yLinearScale(d.healthcare))
+    .attr("r", "20")
+    .attr("fill", "blue")
+    .attr("opacity", ".6");
 });
