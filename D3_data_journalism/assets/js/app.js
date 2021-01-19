@@ -1,6 +1,6 @@
 // Set the variables for height and width
 var svgWidth = 2500;
-var svgHeight = 1200;
+var svgHeight = 875;
 
 var margin = {
     top: 20,
@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
 
     // Scale functions
     var xLinearScale = d3.scaleLinear()
-        .domain([d3.max(povertydata, d => d.healthcare), 8])
+        .domain([d3.max(povertydata, d => d.healthcare) - 2, 8])
         .range([height, 0]);
     
     var yLinearScale = d3.scaleLinear()
