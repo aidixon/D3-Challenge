@@ -1,6 +1,6 @@
 // Set the variables for height and width
-var svgWidth = 2000;
-var svgHeight = 700;
+var svgWidth = 2500;
+var svgHeight = 1200;
 
 var margin = {
     top: 20,
@@ -34,11 +34,11 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
 
     // Scale functions
     var xLinearScale = d3.scaleLinear()
-        .domain([d3.max(povertydata, d => d.healthcare), 0])
+        .domain([d3.max(povertydata, d => d.healthcare), 8])
         .range([height, 0]);
     
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(povertydata, d => d.poverty)])
+        .domain([4, d3.max(povertydata, d => d.poverty)])
         .range([height, 0]);
     // Axis functions
     var bottomAxis = d3.axisBottom(xLinearScale);
@@ -63,10 +63,11 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
     .attr("fill", "blue")
     .attr("opacity", ".6");
 
+    
     // Initialize tooltip
     var toolTip = d3.tip()
         .attr("class", "toolTip")
-        .offset([80, -60])
+        .offset([100, -60])
         .html(function(d) {
             return (`<strong>${d.state}<br> Poverty: ${d.poverty}% <br> Healthcare: ${d.healthcare}%</strong>`);
         });
@@ -96,9 +97,32 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
         .text("In Poverty (%)");
 
     chartGroup.append("text")
-        .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+        .attr("transform", `translate(${width/5}, ${height + margin.top + 30})`)
         .attr("class", "axisText")
         .text("Lacks Healthcare (%)");
 }).catch(function(error) {
     console.log(error)
+
+    // Add labels to the circles
+    // svg.selectAll("circle")
+    //     .data(povertydata)
+    //     .enter()
+    //     .append("circle")
+    //     .attr("cx", (d,i) => d[1])
+    //     .attr("cy", (d,i) => h-d[1])
+    //     .attr("r", 5)
+
+    // svg.selectAll("text")
+    //     .data(povertydata)
+    //     .enter()
+    //     .append("text")
+    //     .attr("x", (item) => {
+    //         return item[1]
+    //     })
+    //     .attr("y", (item) => {
+    //         h - item[1]
+    //     })
+    //     .text((item) => {
+    //         item[1]
+    //     })
 });
