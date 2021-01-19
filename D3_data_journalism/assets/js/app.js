@@ -13,7 +13,7 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // SVG wrapper to contain the chart using the scatter class
-var svg = d3.select(".scatter")
+var svg = d3.select("scatter")
     .append("svg")
     .attr("width", svgWidth)
     .attr("height", svgHeight);
@@ -62,6 +62,14 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
     .attr("r", "20")
     .attr("fill", "blue")
     .attr("opacity", ".6");
+
+    // Initialize tooltip
+    var toolTip = d3.tip()
+        .attr("class", "toolTip")
+        .offset([80, -60])
+        .html(function(d) {
+            return (`${d.state}<br> Poverty: ${d.poverty}% <br> Healthcare: ${d.healthcare}`);
+        });
 
     // Add tooltips to the chart
     chartGroup.call(toolTip);
