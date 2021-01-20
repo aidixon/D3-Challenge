@@ -6,4 +6,4 @@ to display the y-axis on the left and the x-axis on the bottom. Once the file wa
 
 Tooltip was used as an action to occur when the mouse hovers over the data and when the mouse moves off of the data point. The image is a sample of the final code.
 
-<img src = "Chart.png">
+<img src = "D3_data_journalism/Chart.png">
