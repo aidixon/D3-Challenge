@@ -103,26 +103,4 @@ d3.csv("assets/data/data.csv").then(function(povertydata) {
 }).catch(function(error) {
     console.log(error)
 
-    // Add labels to the circles
-    // svg.selectAll("circle")
-    //     .data(povertydata)
-    //     .enter()
-    //     .append("circle")
-    //     .attr("cx", (d,i) => d[1])
-    //     .attr("cy", (d,i) => h-d[1])
-    //     .attr("r", 5)
-
-    // svg.selectAll("text")
-    //     .data(povertydata)
-    //     .enter()
-    //     .append("text")
-    //     .attr("x", (item) => {
-    //         return item[1]
-    //     })
-    //     .attr("y", (item) => {
-    //         h - item[1]
-    //     })
-    //     .text((item) => {
-    //         item[1]
-    //     })
 });
